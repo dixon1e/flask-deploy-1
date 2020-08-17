@@ -1,15 +1,17 @@
 FROM python:3.7.2
-
-RUN pip install pipenv
-
-ADD . /flask-deploy
-
-WORKDIR /flask-deploy
-
-RUN pipenv install --system --skip-lock
-
-RUN pip install gunicorn[gevent]
-
+WORKDIR /app
 EXPOSE 5000
 
-CMD gunicorn --worker-class gevent --workers 8 --bind 0.0.0.0:5000 wsgi:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+COPY requirements.txt .
+RUN pip install -U pip \
+    pip install gunicorn[gevent] \
+    pip install -r requirements.txt
+
+# Run the application:
+COPY . .
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
