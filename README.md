@@ -5,6 +5,17 @@ N.B. As of the initial version, the docker-compose.yml is set to do a database i
 
 TODO: Develop a second compose without database init.
 
+## System requirements
+
+Expect 4 cores 2 GB Free RAM
+
+## Get this repo installed
+
+```
+git clone https://github.com/dixon1e/flask-deploy-1.git
+cd flask-deploy-1
+```
+
 ## Build and Run
 This is a Docker Compose project. The two different steps are to build docker images for the services, and then run.
 
