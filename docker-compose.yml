@@ -25,9 +25,9 @@ services:
       - "80:5001"
     environment:
       - APP_ENV=${APP_ENV}
-      - EMAIL_USER=YOURMAILHERE
-      - EMAIL_PASS=YOURPASSHERE
-      - SQLALCHEMY_DATABASE_URI=sqlite:///site.db
+      - EMAIL_USER='dixon1e@gmail.com'
+      - EMAIL_PASS='pzfkheifcaslyzvl'
+      - SQLALCHEMY_DATABASE_URI=postgres://qfdbtxlm:H1FnJZdbxMsjVN3zass1qqiSoRF_QU53@lallah.db.elephantsql.com:5432/qfdbtxlm # sqlite:///site.db
       - STATIC_URL=/static
       - STATIC_PATH=/flaskblog/static
       - PYTHONUNBUFFERED=1
