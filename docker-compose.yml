@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 secrets:
   namecom_endpoint:
@@ -48,13 +48,13 @@ services:
     environment:
       - POSTGRES_USER=db_user 
       - POSTGRES_PASSWORD=db_password
-  # migration:
-  #   build: .
-  #   environment:
-  #     - APP_ENV=${APP_ENV}
-  #   command: flask db init && flask db migrate -m "Initial migration." && flask db upgrade
-  #   depends_on:
-  #     - db-postgres
+  migration:
+    build: .
+    environment:
+      - APP_ENV=${APP_ENV}
+    command: flask db init && flask db migrate -m "Initial migration." && flask db upgrade
+    depends_on:
+      - db-postgres
   api:
     container_name: "api-service"
     build:
