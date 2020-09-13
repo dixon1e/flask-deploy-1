@@ -25,8 +25,8 @@ services:
       - "--certificatesresolvers.myresolver.acme.email=dixon@archethought.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "80:80"
+      - "443:443"
     secrets:
       - "godaddy_endpoint"
       - "godaddy_api_key"
@@ -61,7 +61,7 @@ services:
         context: .
         dockerfile: Dockerfile
     ports:
-      - "5001:5001"
+      - "5000:5000"
     environment:
       - APP_ENV=${APP_ENV}
       - EMAIL_USER='YOURMAIL'
