@@ -10,10 +10,10 @@ secrets:
 
 services:
   traefik:
-    image: "traefik:v2.2"
+    image: "traefik:v2.2.11"
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
+      - "--log.level=DEBUG"
       - "--api"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -60,8 +60,8 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
+        #ports:
+        #- "5000:5000"
     environment:
       - APP_ENV=${APP_ENV}
       - EMAIL_USER='YOURMAIL'
@@ -73,11 +73,12 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`flaskblog.archethought.com`)"
+      - "traefik.port=5000"
+      - "traefik.http.routers.api.rule=Host(`archethought.net`) || Host(`flaskblog.archethought.net`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=myresolver"
-      - "traefik.http.routers.api.tls.domains[0].main=archethought.com"
-      - "traefik.http.routers.api.tls.domains[0].sans=*.archethought.com"
+      - "traefik.http.routers.api.tls.domains[0].main=archethought.net"
+      - "traefik.http.routers.api.tls.domains[0].sans=*.archethought.net"
       # middleware redirect
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       # global redirect to https

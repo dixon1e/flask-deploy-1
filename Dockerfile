@@ -3,4 +3,4 @@ WORKDIR /flaskblog
 COPY . .
 RUN pip install -U pip
 RUN pip install -r requirements.txt
-ENTRYPOINT ["bash", "-c", "flask run --host '0.0.0.0' --port=5001"]
+ENTRYPOINT ["bash", "-c", "flask run --host '0.0.0.0' --port=80"]
