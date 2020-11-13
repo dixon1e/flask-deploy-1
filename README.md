@@ -19,7 +19,7 @@ cd flask-deploy-1
 ## Build and Run
 This is a Docker Compose project. The two different steps are to build docker images for the services, and then run.
 
-To prove the build works before runing compose, run this command:
+To prove the build works before running compose, run this command:
 
 ```
 docker build -t mytestimage .
