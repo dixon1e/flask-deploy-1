@@ -5,6 +5,8 @@ from api import api
 from flask import Flask
 from flask import render_template
 from flask_migrate import Migrate
+from gevent import pywsgi
+
 # Following import is where db = SQLAlchemy() happens
 # N.B. it is initialized with app below
 # TODO: Inits are messy and not good practice
@@ -28,6 +30,8 @@ def create_app():
     # prepare for db migration
     migrate = Migrate(app, db)
 
+
+
     # define hello world page
     @app.route('/')
     def hello_world():
@@ -46,7 +50,6 @@ def create_app():
         return render_template('/smartvenue.html')
     return app
 
-
 if __name__ == "__main__":
     app = create_app()
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host="0.0.0.0", debug=False)
